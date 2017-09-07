@@ -1,7 +1,7 @@
 
 
 from modules import Modules
-from graph import Graph
+from PS00 import PS00
 
 
 class ModuleExamples:
@@ -38,4 +38,9 @@ class ModuleExamples:
 
 
 if __name__ == '__main__':
-    print(Graph.makegraph(ModuleExamples.modules1))
+    soln = PS00()
+    print(soln.isCircular(ModuleExamples.circularModules))
+    print(soln.bestMode('Main', ModuleExamples.modules1) == 'LP64')
+    print(soln.bestMode('Main', ModuleExamples.modules2) == 'ILP32')
+    print(soln.bestPlan('Main', ModuleExamples.modules1))
+    print(soln.bestPlan('Main', ModuleExamples.modules2))
