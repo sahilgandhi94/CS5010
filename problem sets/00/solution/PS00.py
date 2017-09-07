@@ -1,3 +1,7 @@
+''' solution class '''
+
+from graph import Graph
+
 
 class PS00:
 
@@ -26,8 +30,7 @@ class PS00:
     #     isCircular (circularModules)  =>  true
 
     def isCircular(self, modules):
-        # Your code goes here.
-        pass
+        return Graph.makegraph(modules).iscyclic()
 
     # bestMode : String ListOfModule -> String
     # GIVEN: a module name M and a list of module descriptions
@@ -47,7 +50,7 @@ class PS00:
 
     def bestMode (self, m, modules):
         # Your code goes here.
-        pass
+        return self._plan(m, modules)[1]
 
     # bestPlan : String ListOfModule -> ListOfString
     # GIVEN: a module name M and a list of module descriptions
@@ -64,7 +67,44 @@ class PS00:
 
     def bestPlan (self, m, modules):
         # Your code goes here.
-        pass
+        return [mod.moduleName for mod in self._plan(m, modules)[0]]
 
     # Your help methods go here.
 
+    def _plan(self, name, modules):
+        grph = Graph.makegraph(modules)
+        order = grph.order(module=name)
+        tocompile = list()  # array of modules (in order) that needs to be compiled
+        nocompile = list()  # array of modules (in order) that need not be compiled
+        bestmode = None
+
+        for module in order:
+            if self._needscompilation(module, grph):
+                # all modules starting from this module inside the order list needs to be compiled
+                tocompile = order[order.index(module):]
+                break
+            else:
+                nocompile.append(module)
+        if nocompile:
+            bestmode = nocompile[-1].compilationMode
+        else:
+            bestmode = tocompile[0].compilationMode
+
+        return tocompile, bestmode
+                
+
+    def _needscompilation(self, module, grph):
+        ''' checks for assertions such as (not in order)
+            1. compilation time is after modified time or compilation time is -1
+            2. compilation mode of all dependencies is same as its own
+            3. compilation time is > all compilation time of its dependencies
+        '''
+        if module.compilationTime == -1 or module.compilationTime < module.modificationTime:
+            return True
+        for mod in grph.adj[module]:
+            if mod.compilationTime > module.compilationTime:
+                return True
+            elif mod.compilationMode != module.compilationMode:
+                return True
+
+        return False
