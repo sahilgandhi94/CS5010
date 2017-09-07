@@ -62,11 +62,12 @@ class _Module0(Module):
             return self.compilationMode == mod.compilationMode
 
     def __repr__(self):
-        final = '{}: uses('.format(self.moduleName)
+        final = '{}: uses( '.format(self.moduleName)
         for string in self.moduleUses:
-            final += ' {},'.format(string)
+            final += '{},'.format(string)
         final = final[0: len(final)-1]
-        final += '){}:{}:{}'.format(self.modificationTime, self.compilationTime, self.compilationMode)
+        final += ') {}; {}; {}'.format(self.modificationTime, self.compilationTime, self.compilationMode)
+        return final
 
     def __hash__(self):
         return hash(self.__repr__())
