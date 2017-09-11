@@ -72,6 +72,7 @@ class PS00:
     # Your help methods go here.
 
     def _plan(self, name, modules):
+        ''' helper method for both bestPlan and bestMode '''
         grph = Graph.makegraph(modules)
         order = grph.order(module=name)
         tocompile = list()  # array of modules (in order) that needs to be compiled
