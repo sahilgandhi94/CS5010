@@ -1,0 +1,34 @@
+
+Requirements to compile the program
+    - linux terminal 
+    - support for python 3.4.x that is executed by the command `python3`
+
+Points to note:
+    - The python file moduleexamples.py contains the test cases given in the sample code
+    - It also has 2 additional test cases (namely, modules3 and modules4) that were discussed on Piazza questions
+    - The file runs all test cases across all the relevant methods of isCircular, bestMode and bestPlan
+    - If you wish to add more test cases, then you can simple modify an existing test case and/or add another variable
+
+Steps to run the program
+    - change the working directory of the linus terminal to the program directory
+    - run the following command:
+        $ python3 moduleexamples.py
+
+Sample output of the program:
+    ```
+    -bash-4.2$ python3 moduleexamples.py 
+    Circular Test for circularmodules ===> True
+    Circular Test for modules1 ===> False
+    Circular Test for modules2 ===> False
+    Circular Test for modules3 ===> False
+    Circular Test for modules4 ===> False
+    BestMode Test for modules1 ===> LP64
+    BestMode Test for modules2 ===> ILP32
+    BestMode Test for modules3 ===> LP64
+    BestMode Test for modules4 ===> LP32
+    BestPlan Test for modules1 ===> ['Main']
+    BestPlan Test for modules2 ===> ['List', 'AList', 'Main']
+    BestPlan Test for modules3 ===> []
+    BestPlan Test for modules4 ===> ['A3', 'O2', 'Obj', 'List', 'A1', 'A2', 'AList', 'Main']
+    ============= FIN =============
+    ```
