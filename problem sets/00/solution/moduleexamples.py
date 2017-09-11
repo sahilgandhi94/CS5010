@@ -36,11 +36,37 @@ class ModuleExamples:
                     "AList", ["List", "Obj"], 1472654764, 1472659242, "LP64"),
                 Modules.makeModule("Obj", [], 1472630256, 1472638841, "ILP32")]
 
+    modules3 = [Modules.makeModule("Main", ["List", "AList"], 0, 11, "LP64"),
+                Modules.makeModule(
+                    "List", ["Obj"], 0, 11, "LP64"),
+                Modules.makeModule(
+                    "AList", ["List", "Obj"], 0, 11, "LP64"),
+                Modules.makeModule("Obj", [], 0, 11, "LP64")]
+
+    modules4 = [Modules.makeModule("Main", ["List", "AList"], 3, 10, "ILP32"),
+                Modules.makeModule("List", ["Obj"], 1, 4, "ILP64"),
+                Modules.makeModule("AList", ["A1", "A2"], 5, 4, "ILP32"),
+                Modules.makeModule("Obj", ["O1", "O2"], 1, 2, "LP32"),
+                Modules.makeModule("O1", [], 1, 3, "LP32"),
+                Modules.makeModule("O2", ["A3"], 1, 4, "LP32"),
+                Modules.makeModule("A1", [], 1, 2, "LP64"),
+                Modules.makeModule("A2", ["A3"], 1, 2, "LP64"),
+                Modules.makeModule("A3", [], 2, -1, "LP64")]
+
 
 if __name__ == '__main__':
     soln = PS00()
-    print(soln.isCircular(ModuleExamples.circularModules))
-    print(soln.bestMode('Main', ModuleExamples.modules1) == 'LP64')
-    print(soln.bestMode('Main', ModuleExamples.modules2) == 'ILP32')
-    print(soln.bestPlan('Main', ModuleExamples.modules1))
-    print(soln.bestPlan('Main', ModuleExamples.modules2))
+    print('Circular Test for circularmodules ===>', soln.isCircular(ModuleExamples.circularModules))
+    print('Circular Test for modules1 ===>', soln.isCircular(ModuleExamples.modules1))
+    print('Circular Test for modules2 ===>', soln.isCircular(ModuleExamples.modules2))
+    print('Circular Test for modules3 ===>', soln.isCircular(ModuleExamples.modules3))
+    print('Circular Test for modules4 ===>', soln.isCircular(ModuleExamples.modules4))
+    print('BestMode Test for modules1 ===>', soln.bestMode('Main', ModuleExamples.modules1))
+    print('BestMode Test for modules2 ===>', soln.bestMode('Main', ModuleExamples.modules2))
+    print('BestMode Test for modules3 ===>', soln.bestMode('Main', ModuleExamples.modules3))
+    print('BestMode Test for modules4 ===>', soln.bestMode('Main', ModuleExamples.modules4))
+    print('BestPlan Test for modules1 ===>', soln.bestPlan('Main', ModuleExamples.modules1))
+    print('BestPlan Test for modules2 ===>', soln.bestPlan('Main', ModuleExamples.modules2))
+    print('BestPlan Test for modules3 ===>', soln.bestPlan('Main', ModuleExamples.modules3))
+    print('BestPlan Test for modules4 ===>', soln.bestPlan('Main', ModuleExamples.modules4))
+    print('============= FIN =============')
