@@ -1,5 +1,5 @@
-# Problem Set submission confirmation numbers
+# Problem Set submissions
 
-|PS|Number |
+|PS|Confirmation number |
 |--|:-----:|
 |00|e511a2c|
